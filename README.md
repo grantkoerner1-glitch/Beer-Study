@@ -1,23 +1,27 @@
-# Beer Study Website (Durham)
+# Beer Study Durham Website Redesign
 
-Modern single-page marketing site for **Beer Study**, crafted for local discovery, foot traffic, and event-driven engagement.
+Premium single-page marketing site concept for Beer Study Durham, reimagined with a cinematic craft-bar aesthetic and conversion-focused flow.
 
-## File structure
+## Stack
 
-- `index.html` — semantic page structure and branded content sections.
-- `styles.css` — responsive visual system, layout, and animations.
-- `script.js` — tap list filtering, mobile nav, reveal animations, and dynamic year.
+- HTML
+- CSS
+- Vanilla JavaScript
 
-## Run locally
+## Sections Included
+
+1. Hero
+2. About / Vibe
+3. Tap List Experience (filterable)
+4. Events
+5. Food Integration (The Boot Room)
+6. Space / Atmosphere
+7. Visit (hours, address, parking, map)
+
+## Local Run
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Then open `http://localhost:8000`.
-
-## Quick customization
-
-- Update tap items in `script.js` (`tapData` array).
-- Update hours/contact in `index.html` under `#visit`.
-- Adjust color system in `styles.css` under `:root` variables.
+Open `http://localhost:8000`.

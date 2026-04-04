@@ -5,238 +5,250 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Beer Study in Durham, NC — craft beer bar + bottle shop with 40 rotating taps, curated bottles, weekly events, and food from The Boot Room."
+      content="Beer Study Durham is a craft beer bar + bottle shop with rotating taps, weekly events, and food from The Boot Room next door."
     />
-    <title>Beer Study Durham | Craft Beer Bar + Bottle Shop</title>
+    <title>Beer Study Durham | Taproom + Bottle Shop</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- Ambient background effects -->
-    <div class="bg-noise" aria-hidden="true"></div>
-    <div class="bg-glow bg-glow-1" aria-hidden="true"></div>
-    <div class="bg-glow bg-glow-2" aria-hidden="true"></div>
+    <div class="bg-layer" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
 
-    <!-- Header / Navigation -->
     <header class="site-header" id="top">
       <div class="container nav-wrap">
-        <a href="#top" class="brand" aria-label="Beer Study homepage">
-          <span class="brand-dot"></span>
-          <span>Beer Study</span>
+        <a class="brand" href="#top" aria-label="Beer Study home">
+          <span class="brand-mark"></span>
+          <span>Beer Study Durham</span>
         </a>
-        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+
+        <button class="menu-toggle" aria-expanded="false" aria-label="Open menu">
           <span></span><span></span>
         </button>
-        <nav class="site-nav" aria-label="Main navigation">
-          <a href="#about">About</a>
-          <a href="#taps">Tap List</a>
+
+        <nav class="site-nav" aria-label="Primary">
+          <a href="#vibe">Vibe</a>
+          <a href="#taps">Taps</a>
           <a href="#events">Events</a>
           <a href="#food">Food</a>
+          <a href="#space">Space</a>
           <a href="#visit">Visit</a>
-          <a class="nav-cta" href="#visit">Plan Your Stop</a>
+          <a class="btn btn-sm" href="#visit">Plan Tonight</a>
         </nav>
       </div>
     </header>
 
     <main>
-      <!-- Hero -->
-      <section class="hero section" id="home">
+      <section class="hero" id="home">
         <div class="container hero-grid">
           <div class="hero-copy reveal">
             <p class="eyebrow">Durham, North Carolina</p>
             <h1>
-              Study good beer.
-              <span class="accent">Stay for the people.</span>
+              Not a bar crawl stop.<br />
+              <span>Your favorite stop.</span>
             </h1>
-            <p class="lede">
-              Beer Study is your neighborhood bottle shop and taproom with 40 rotating drafts,
-              rare finds to-go, and the kind of atmosphere that turns one drink into a whole
-              evening.
+            <p>
+              38–40 rotating taps, fridge treasures, zero snob energy. Beer Study is where
+              curious drinkers, neighborhood regulars, and “just one drink” plans all collide.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#taps">See What's Pouring</a>
-              <a class="btn btn-ghost" href="#events">Explore Events</a>
+              <a class="btn" href="#visit">Visit Beer Study</a>
+              <a class="btn btn-ghost" href="#taps">See Tap Highlights</a>
+              <a class="btn btn-ghost" href="#events">Tonight's Events</a>
             </div>
-            <ul class="hero-meta" aria-label="Quick info">
-              <li>40 rotating taps</li>
-              <li>Craft bottles + cans to-go</li>
-              <li>Connected to The Boot Room kitchen</li>
+            <ul class="hero-pills">
+              <li>38–40 Rotating Drafts</li>
+              <li>Beer • Wine • Cider • N/A</li>
+              <li>Food from The Boot Room</li>
             </ul>
           </div>
 
-          <div class="hero-cards reveal">
-            <article class="glass-card now-pouring">
-              <h2>Now Pouring</h2>
-              <p>Live tap highlights updated throughout the week.</p>
-              <ul id="heroTapPreview"></ul>
-            </article>
-            <article class="glass-card social-proof">
-              <p class="kicker">Neighborhood Favorite</p>
-              <h3>"The perfect blend of beer nerd paradise and laid-back hangout."</h3>
-              <p>Locals drop in for the rotating list, eclectic vibe, and genuinely helpful staff.</p>
-            </article>
-          </div>
+          <aside class="hero-panel reveal">
+            <p class="panel-label">Pour Preview</p>
+            <ul id="heroTapPreview"></ul>
+            <div class="panel-note">
+              <h2>This week at Beer Study</h2>
+              <p>Trivia, wine tasting flights, and live neighborhood energy on repeat.</p>
+            </div>
+          </aside>
         </div>
       </section>
 
-      <!-- About -->
-      <section class="section" id="about">
+      <section class="section" id="vibe">
         <div class="container section-grid">
-          <div class="section-head reveal">
-            <p class="eyebrow">About Beer Study</p>
-            <h2>Built for curious drinkers, casual sippers, and everyone in between.</h2>
+          <div class="reveal">
+            <p class="eyebrow">About / Vibe</p>
+            <h2>A bottle shop heart with a living-room soul.</h2>
           </div>
-          <div class="section-body reveal">
+          <div class="copy-stack reveal">
             <p>
-              We started Beer Study to give Durham a beer spot with personality: equal parts bottle
-              shop, taproom, and community living room. Come geek out over a saison, discover your
-              new easy-drinker, or just post up with friends and let the night unfold.
+              Beer Study was built for people who like flavor, conversation, and discovering
+              something new without feeling quizzed at the bar. Ask for a wild sour, a clean lager,
+              a natural wine, or a no-proof can that still tastes like a real choice.
             </p>
             <p>
-              Our team keeps the draft wall fresh, the fridges stacked with standout picks, and the
-              energy welcoming from first visit to fiftieth. No gatekeeping. No pretension. Just
-              good pours and good people.
+              The room is eclectic by design: warm light, odd little details, playlists that never
+              take themselves too seriously, and staff who know what they're pouring.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- Tap List -->
       <section class="section section-alt" id="taps">
         <div class="container">
-          <div class="section-head centered reveal">
-            <p class="eyebrow">Tap List & Drinks</p>
-            <h2>Always rotating. Always worth a second round.</h2>
+          <div class="section-head reveal">
+            <p class="eyebrow">Tap List / Drink Experience</p>
+            <h2>Rotating on purpose, not for show.</h2>
             <p>
-              From hop-forward IPAs to crisp lagers, wild ales, ciders, and natural wines, our list
-              is built to reward curiosity.
+              The wall moves fast: local standouts, cult favorites, and style diversity that keeps
+              regulars curious.
             </p>
           </div>
-          <div class="tap-controls reveal" role="tablist" aria-label="Drink filters">
+
+          <div class="filter-row reveal" role="tablist" aria-label="Filter taps">
             <button class="chip active" data-filter="all">All</button>
             <button class="chip" data-filter="hoppy">Hoppy</button>
             <button class="chip" data-filter="crisp">Crisp</button>
-            <button class="chip" data-filter="dark">Dark</button>
-            <button class="chip" data-filter="funky">Funky</button>
-            <button class="chip" data-filter="other">Wine + Cider</button>
+            <button class="chip" data-filter="dark">Dark / Malt</button>
+            <button class="chip" data-filter="wild">Wild / Sour</button>
+            <button class="chip" data-filter="other">Wine / Cider / N/A</button>
           </div>
-          <div class="tap-grid" id="tapGrid" aria-live="polite"></div>
+
+          <div id="tapGrid" class="tap-grid reveal" aria-live="polite"></div>
         </div>
       </section>
 
-      <!-- Events -->
       <section class="section" id="events">
         <div class="container">
           <div class="section-head reveal">
             <p class="eyebrow">Events</p>
-            <h2>Your week, but better planned.</h2>
+            <h2>The social calendar is built in.</h2>
           </div>
+
           <div class="event-grid reveal">
             <article class="event-card">
-              <p class="event-day">Tuesdays</p>
-              <h3>Trivia & Tiny Victories</h3>
-              <p>Bring your smartest friend. Stay for the bragging rights and bonus pours.</p>
+              <p class="event-meta">Every Tuesday • 7:00 PM</p>
+              <h3>Trivia Night</h3>
+              <p>
+                Teams, bragging rights, and a room that gets louder every round in the best way.
+              </p>
             </article>
             <article class="event-card">
-              <p class="event-day">Thursdays</p>
-              <h3>Tap Takeovers</h3>
-              <p>Meet brewers, taste limited kegs, and try beers you won’t see twice.</p>
+              <p class="event-meta">Every Wednesday • 6:00 PM</p>
+              <h3>Weekly Wine Tasting</h3>
+              <p>
+                Casual guided pours for people who like wine but hate wine snobbery.
+              </p>
             </article>
             <article class="event-card">
-              <p class="event-day">Weekends</p>
-              <h3>Neighborhood Sessions</h3>
-              <p>Low-key hangs, rotating DJs, and a room full of regulars and new faces.</p>
+              <p class="event-meta">Fridays + Weekends</p>
+              <h3>Community Hangouts</h3>
+              <p>Pop-ins, meetups, and the "one more round" energy that defines the space.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- Food -->
       <section class="section section-alt" id="food">
-        <div class="container food-wrap reveal">
+        <div class="container food-grid reveal">
           <div>
-            <p class="eyebrow">Food by The Boot Room</p>
-            <h2>Great beer deserves great food a few steps away.</h2>
+            <p class="eyebrow">Food Integration</p>
+            <h2>The Boot Room next door. Your meal, handled.</h2>
             <p>
-              We’re connected to The Boot Room, so your pint can come with stacked burgers,
-              shareable snacks, and comfort food that actually keeps up with the tap list.
+              Order stacked burgers, wings, and shareables from The Boot Room while you settle into
+              a pint. Same night, same vibe, no logistical gymnastics.
             </p>
-            <a class="btn btn-primary" href="https://order.toasttab.com/online/the-boot-room" target="_blank" rel="noopener noreferrer">Order from The Boot Room</a>
+            <a
+              class="btn"
+              href="https://order.toasttab.com/online/the-boot-room"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Order from The Boot Room</a
+            >
           </div>
-          <div class="food-points">
-            <div class="point-card">
-              <h3>Fast pairing</h3>
-              <p>Grab food without leaving your seat or missing your conversation.</p>
-            </div>
-            <div class="point-card">
-              <h3>Built for groups</h3>
-              <p>Shareables, hearty mains, and options for every appetite.</p>
-            </div>
-            <div class="point-card">
-              <h3>All-night energy</h3>
-              <p>From afternoon snacks to late pours, it all works together.</p>
-            </div>
+          <div class="feature-stack">
+            <article>
+              <h3>Pairing-friendly menu</h3>
+              <p>Big flavors built to stand up to IPAs, lagers, stouts, and cider.</p>
+            </article>
+            <article>
+              <h3>Group-ready by default</h3>
+              <p>From solo stools to large tables, ordering stays easy.</p>
+            </article>
+            <article>
+              <h3>No seat-hopping required</h3>
+              <p>Grab food without interrupting your night.</p>
+            </article>
           </div>
         </div>
       </section>
 
-      <!-- Gallery / vibe -->
-      <section class="section" id="gallery">
+      <section class="section" id="space">
         <div class="container">
-          <div class="section-head centered reveal">
-            <p class="eyebrow">The Vibe</p>
-            <h2>Eclectic, social, and unmistakably Durham.</h2>
+          <div class="section-head reveal">
+            <p class="eyebrow">Space / Atmosphere</p>
+            <h2>Dim glow, odd details, good people.</h2>
           </div>
-          <div class="vibe-grid reveal">
-            <div class="vibe-block">Colorful taps. Friendly chaos.</div>
-            <div class="vibe-block">A shelf for every beer mood.</div>
-            <div class="vibe-block">Date night, group night, solo pint night.</div>
-            <div class="vibe-block">Come as you are, leave with a new favorite.</div>
+          <div class="space-grid reveal">
+            <div class="space-card"><span>Low light, warm wood, and eclectic corners that invite long hangs.</span></div>
+            <div class="space-card"><span>A mix of regulars, first-timers, dates, and post-work crews.</span></div>
+            <div class="space-card"><span>Knowledgeable staff who can nerd out—or just pour you something great.</span></div>
+            <div class="space-card"><span>Music and mood dialed in for conversation, not shouting.</span></div>
           </div>
         </div>
       </section>
 
-      <!-- Visit -->
       <section class="section section-alt" id="visit">
         <div class="container visit-grid reveal">
           <div>
-            <p class="eyebrow">Visit Beer Study</p>
-            <h2>Your next favorite stop is right here in Durham.</h2>
-            <p class="lede-small">
-              Whether you’re grabbing a quick four-pack or settling in for the night, we’ll save
-              you a seat.
+            <p class="eyebrow">Visit</p>
+            <h2>Come thirsty. Leave with a new favorite.</h2>
+            <p class="visit-copy">
+              Whether it's a quick bottle run or an all-night catch-up, Beer Study makes it easy to
+              land and stay awhile.
             </p>
-            <div class="cta-group">
-              <a class="btn btn-primary" href="https://maps.google.com/?q=2501+University+Dr+%234,+Durham,+NC+27707" target="_blank" rel="noopener noreferrer">Get Directions</a>
+            <div class="visit-cards">
+              <article class="visit-card">
+                <h3>Address</h3>
+                <p>2501 University Dr #4<br />Durham, NC 27707</p>
+              </article>
+              <article class="visit-card">
+                <h3>Hours</h3>
+                <p>
+                  Sun: 10:00 AM–10:00 PM<br />
+                  Mon–Wed: 11:30 AM–10:00 PM<br />
+                  Thu–Fri: 11:30 AM–11:00 PM<br />
+                  Sat: 10:00 AM–11:00 PM
+                </p>
+              </article>
+              <article class="visit-card">
+                <h3>Parking</h3>
+                <p>On-site lot in front, plus nearby overflow. Rideshare drop-off is straightforward.</p>
+              </article>
+            </div>
+            <div class="hero-actions">
+              <a
+                class="btn"
+                href="https://maps.google.com/?q=2501+University+Dr+%234,+Durham,+NC+27707"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Get Directions</a
+              >
               <a class="btn btn-ghost" href="tel:+19842197538">Call (984) 219-7538</a>
             </div>
           </div>
-          <div class="visit-cards">
-            <article class="info-card">
-              <h3>Address</h3>
-              <p>2501 University Dr #4<br />Durham, NC 27707</p>
-            </article>
-            <article class="info-card">
-              <h3>Hours</h3>
-              <p>
-                Sun: 10am–10pm<br />
-                Mon–Wed: 11:30am–10pm<br />
-                Thu–Fri: 11:30am–11pm<br />
-                Sat: 10am–11pm
-              </p>
-            </article>
-            <article class="info-card">
-              <h3>Follow Along</h3>
-              <p>
-                Tap updates, event drops, and behind-the-bar moments on Instagram.
-              </p>
-              <a href="https://www.instagram.com/beerstudydurham/" target="_blank" rel="noopener noreferrer">@beerstudydurham</a>
-            </article>
+          <div class="map-wrap" aria-label="Map to Beer Study">
+            <iframe
+              title="Beer Study Durham map"
+              src="https://www.google.com/maps?q=2501+University+Dr+%234,+Durham,+NC+27707&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
       </section>
@@ -244,8 +256,8 @@
 
     <footer class="site-footer">
       <div class="container footer-wrap">
-        <p>© <span id="year"></span> Beer Study Durham. Fresh beer. Great people. Good times.</p>
-        <a href="#top">Back to top ↑</a>
+        <p>© <span id="year"></span> Beer Study Durham — Fresh pours, good weird vibes, solid company.</p>
+        <a href="https://www.instagram.com/beerstudydurham/" target="_blank" rel="noopener noreferrer">@beerstudydurham</a>
       </div>
     </footer>
 
