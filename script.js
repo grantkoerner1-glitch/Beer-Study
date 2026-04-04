@@ -17,6 +17,49 @@ const filterButtons = document.querySelectorAll(".chip");
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector(".site-nav");
 
+const menuList = document.getElementById("menuList");
+
+async function renderMenu() {
+  if (!menuList) return;
+
+  try {
+    const response = await fetch("menu-data.json");
+    const items = await response.json();
+
+    const grouped = items.reduce((acc, item) => {
+      acc[item.category] ??= [];
+      acc[item.category].push(item);
+      return acc;
+    }, {});
+
+    menuList.innerHTML = Object.entries(grouped)
+      .map(
+        ([category, categoryItems]) => `
+          <section class="menu-category">
+            <h4>${category}</h4>
+            ${categoryItems
+              .map(
+                (item) => `
+                  <div class="menu-item">
+                    <span>
+                      ${item.name}
+                      ${item.status ? `<span class="status">(${item.status})</span>` : ""}
+                    </span>
+                    <span class="price">${item.price}</span>
+                  </div>
+                `
+              )
+              .join("")}
+          </section>
+        `
+      )
+      .join("");
+  } catch (error) {
+    menuList.innerHTML = '<p>Menu data could not be loaded right now.</p>';
+  }
+}
+
+
 function renderTaps(filter = "all") {
   const taps = filter === "all" ? tapData : tapData.filter((tap) => tap.category === filter);
 
@@ -69,3 +112,4 @@ const revealObserver = new IntersectionObserver(
 
 document.getElementById("year").textContent = new Date().getFullYear();
 renderTaps();
+renderMenu();
