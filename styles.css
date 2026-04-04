@@ -364,7 +364,7 @@ h2 {
 
 .visit-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 1.1rem;
   align-items: start;
 }
@@ -388,6 +388,65 @@ h2 {
 
 .visit-card h3 {
   margin-bottom: 0.3rem;
+}
+
+
+.menu-panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  max-height: 430px;
+  overflow: auto;
+}
+
+.menu-panel h3 {
+  margin-top: 0.15rem;
+  font-size: 1.7rem;
+}
+
+.menu-note {
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.menu-list {
+  margin-top: 0.85rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.menu-category {
+  border-top: 1px solid var(--line);
+  padding-top: 0.65rem;
+}
+
+.menu-category h4 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  color: var(--amber-bright);
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.menu-item + .menu-item {
+  margin-top: 0.35rem;
+}
+
+.menu-item .price {
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.menu-item .status {
+  color: var(--amber-bright);
+  font-size: 0.78rem;
 }
 
 .map-wrap {
