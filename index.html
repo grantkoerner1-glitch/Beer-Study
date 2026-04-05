@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Beer Study Durham is a cozy craft beer bar + bottle shop with 40 rotating taps, events, and food from The Boot Room."
+      content="Beer Study Durham is a cozy craft beer bar and bottle shop with rotating taps, weekly events, and food from The Boot Room."
     />
-    <title>Beer Study Durham | Cozy Craft Bar + Bottle Shop</title>
+    <title>Beer Study Durham | Craft Beer Bar + Bottle Shop</title>
 
-    <!-- Warm display + clean body typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,6 +19,8 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#home">Skip to content</a>
+
     <header class="site-header" id="top">
       <div class="container nav-wrap">
         <a class="brand" href="#top" aria-label="Beer Study Durham Home">
@@ -27,25 +28,23 @@
           <span>Beer Study Durham</span>
         </a>
 
-        <button class="menu-toggle" aria-expanded="false" aria-label="Open menu">
+        <button class="menu-toggle" aria-expanded="false" aria-controls="siteNav" aria-label="Toggle menu">
           <span></span>
           <span></span>
         </button>
 
-        <nav class="site-nav" aria-label="Primary navigation">
+        <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+          <a href="#home">Home</a>
           <a href="#about">About</a>
-          <a href="#drinks">Drinks</a>
           <a href="#events">Events</a>
-          <a href="#food">Food</a>
-          <a href="#gallery">Gallery</a>
+          <a href="menu.html">Menu</a>
           <a href="#visit">Visit</a>
-          <a class="btn btn-sm" href="#visit">Visit Us</a>
+          <a class="btn btn-sm" href="menu.html">View Full Menu</a>
         </nav>
       </div>
     </header>
 
     <main>
-      <!-- HERO -->
       <section class="hero" id="home" aria-label="Beer Study hero">
         <div class="hero-overlay" aria-hidden="true"></div>
         <div class="container hero-content reveal">
@@ -55,30 +54,28 @@
             <span>Your neighborhood spot.</span>
           </h1>
           <p>
-            Beer Study is a craft beer bar + bottle shop built for long conversations, curious palates, and
-            easy nights out. With around 40 rotating taps plus wine and cider, there is always something new in
-            your glass.
+            Beer Study is a craft beer bar + bottle shop built for long conversations, curious palates, and easy nights out.
+            With roughly 40 rotating taps plus wine, cider, and non-alcoholic choices, every visit feels different.
           </p>
           <div class="hero-actions">
-            <a class="btn" href="#visit">Visit Us</a>
-            <a class="btn btn-ghost" href="#drinks">See What's On Tap</a>
+            <a class="btn" href="#visit">Plan Your Visit</a>
+            <a class="btn btn-ghost" href="menu.html">Explore Menu</a>
           </div>
         </div>
       </section>
 
-      <!-- ABOUT / EXPERIENCE -->
       <section class="section" id="about">
         <div class="container two-col">
           <div class="reveal">
-            <p class="eyebrow">About the Experience</p>
-            <h2>A cozy bottle shop heart with a community living-room soul.</h2>
+            <p class="eyebrow">About Beer Study</p>
+            <h2>A bottle shop heart with a neighborhood living-room soul.</h2>
             <p>
-              Come in for a quick can pull, stay for another round with friends, and somehow end up chatting with
-              the table next to you. Beer Study blends craft credibility with zero pretense.
+              Come in for a quick can pull, stay for another round, and end up talking with the next table over. Beer Study blends
+              craft credibility with zero pretense.
             </p>
             <p>
-              The vibe is warm and eclectic: wood tones, soft evening light, and staff who are happy to nerd out
-              when you want them to—and just pour something delicious when you do not.
+              The space is warm and eclectic: wood tones, soft evening light, and staff who can go deep on style notes or simply
+              pour you something great.
             </p>
           </div>
           <div class="image-card reveal">
@@ -91,32 +88,34 @@
         </div>
       </section>
 
-      <!-- DRINKS / TAPS -->
       <section class="section section-alt" id="drinks">
         <div class="container">
           <div class="section-head reveal">
-            <p class="eyebrow">Drinks & Tap Wall</p>
-            <h2>About 40 rotating taps, always moving for a reason.</h2>
+            <p class="eyebrow">What We Pour</p>
+            <h2>Rotating taps and an always-interesting bottle list.</h2>
             <p>
-              Fresh local standouts, cult classics, crisp lagers, hazies, dark pours, plus wine, cider, and N/A
-              options. Regulars come back because it never feels repetitive.
+              Fresh local standouts, crisp lagers, hazy IPAs, dark pours, natural wine, cider, and quality N/A options. Use filters to
+              preview what tonight could look like.
             </p>
           </div>
 
           <div class="filter-row reveal" role="tablist" aria-label="Filter beverage styles">
-            <button class="chip active" data-filter="all">All</button>
-            <button class="chip" data-filter="hoppy">Hoppy</button>
-            <button class="chip" data-filter="crisp">Crisp</button>
-            <button class="chip" data-filter="dark">Dark</button>
-            <button class="chip" data-filter="wild">Wild / Sour</button>
-            <button class="chip" data-filter="other">Wine / Cider / N/A</button>
+            <button class="chip active" data-filter="all" aria-pressed="true">All</button>
+            <button class="chip" data-filter="hoppy" aria-pressed="false">Hoppy</button>
+            <button class="chip" data-filter="crisp" aria-pressed="false">Crisp</button>
+            <button class="chip" data-filter="dark" aria-pressed="false">Dark</button>
+            <button class="chip" data-filter="wild" aria-pressed="false">Wild / Sour</button>
+            <button class="chip" data-filter="other" aria-pressed="false">Wine / Cider / N/A</button>
           </div>
 
           <div id="tapGrid" class="tap-grid reveal" aria-live="polite"></div>
+
+          <div class="section-cta reveal">
+            <a class="btn" href="menu.html">See Full Food + Drinks Menu</a>
+          </div>
         </div>
       </section>
 
-      <!-- EVENTS -->
       <section class="section" id="events">
         <div class="container">
           <div class="section-head reveal">
@@ -134,7 +133,7 @@
               <div>
                 <p class="event-meta">Every Tuesday • 7:00 PM</p>
                 <h3>Trivia Night</h3>
-                <p>Big energy, friendly competition, and just enough chaos to make Wednesdays worth it.</p>
+                <p>Friendly competition, prizes, and high-energy tables that make midweek plans easy.</p>
               </div>
             </article>
 
@@ -147,7 +146,7 @@
               <div>
                 <p class="event-meta">Every Wednesday • 6:00 PM</p>
                 <h3>Wine Night</h3>
-                <p>Thoughtful pours without wine snob energy. Ask questions, discover favorites, relax.</p>
+                <p>Thoughtful pours without snob energy. Ask questions, discover favorites, and settle in.</p>
               </div>
             </article>
 
@@ -160,66 +159,19 @@
               <div>
                 <p class="event-meta">Weekends + Pop-Ups</p>
                 <h3>Neighborhood Gatherings</h3>
-                <p>From post-work pints to spontaneous meetups, the room tends to fill itself naturally.</p>
+                <p>From post-work pints to drop-in meetups, the room fills naturally and stays welcoming.</p>
               </div>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- FOOD / BOOT ROOM -->
-      <section class="section section-alt" id="food">
-        <div class="container two-col food-layout">
-          <div class="image-card reveal">
-            <img
-              src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1400&q=80"
-              alt="Burger and fries from The Boot Room style food"
-              loading="lazy"
-            />
-          </div>
-          <div class="reveal">
-            <p class="eyebrow">Food from The Boot Room</p>
-            <h2>Bring serious food to your pint night.</h2>
-            <p>
-              Beer Study is connected to The Boot Room, so burgers, wings, and shareable favorites are part of
-              the plan—not an afterthought. Great beer deserves great food.
-            </p>
-            <a
-              class="btn"
-              href="https://order.toasttab.com/online/the-boot-room"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Order from The Boot Room</a
-            >
-          </div>
-        </div>
-      </section>
-
-      <!-- GALLERY / VIBE -->
-      <section class="section" id="gallery">
-        <div class="container">
-          <div class="section-head reveal">
-            <p class="eyebrow">Gallery / Vibe</p>
-            <h2>What it feels like to be here.</h2>
-          </div>
-          <div class="gallery-grid reveal">
-            <figure><img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=80" alt="Craft beer pours lined up" loading="lazy" /></figure>
-            <figure><img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80" alt="Warm pendant lights over bar seating" loading="lazy" /></figure>
-            <figure><img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1200&q=80" alt="Tap handles and beer taps" loading="lazy" /></figure>
-            <figure><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80" alt="Cozy group conversation around drinks" loading="lazy" /></figure>
-            <figure><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=1200&q=80" alt="Foamy craft beer close-up" loading="lazy" /></figure>
-            <figure><img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?auto=format&fit=crop&w=1200&q=80" alt="Crowded neighborhood bar atmosphere" loading="lazy" /></figure>
-          </div>
-        </div>
-      </section>
-
-      <!-- VISIT -->
       <section class="section section-alt" id="visit">
         <div class="container visit-grid reveal">
           <div>
             <p class="eyebrow">Visit Beer Study</p>
             <h2>Come by tonight.</h2>
-            <p>Easy to find, easy to settle in, and always worth a stop—whether you're meeting friends or flying solo.</p>
+            <p>Easy to find, easy to settle in, and always worth the stop whether you are meeting friends or flying solo.</p>
 
             <div class="visit-cards">
               <article class="visit-card">
@@ -242,11 +194,18 @@
             </div>
           </div>
 
-          <aside class="menu-panel">
-            <p class="eyebrow">Boot Room Menu</p>
-            <h3>Menu + Prices</h3>
-            <p class="menu-note">Pulled from The Boot Room Toast ordering page.</p>
-            <div id="menuList" class="menu-list" aria-live="polite"></div>
+          <aside class="visit-aside">
+            <p class="eyebrow">Menu</p>
+            <h3>The Boot Room + Beer Study</h3>
+            <p>Find full food categories, rotating tap highlights, bottles and cans, wine picks, and cider/N/A options.</p>
+            <a class="btn" href="menu.html">Open Full Menu</a>
+            <a
+              class="btn btn-ghost"
+              href="https://order.toasttab.com/online/the-boot-room"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Order The Boot Room</a
+            >
           </aside>
 
           <div class="map-wrap">

@@ -7,60 +7,54 @@ const tapData = [
   { name: "Bookend", brewery: "Haw River", style: "Brown Ale", abv: "5.7%", category: "dark" },
   { name: "Meyer Drift", brewery: "Fun Guys", style: "Sour Ale", abv: "5.2%", category: "wild" },
   { name: "Sunroom Blend", brewery: "Casita", style: "Farmhouse Ale", abv: "6.0%", category: "wild" },
-  { name: "Cider Rotation", brewery: "Botanist & Barrel", style: "Dry Cider", abv: "Varies", category: "other" },
-  { name: "Glasses of Red", brewery: "Weekly Selection", style: "Natural Wine", abv: "Varies", category: "other" },
+  { name: "Autumn Orchard", brewery: "Botanist & Barrel", style: "Dry Cider", abv: "6.1%", category: "other" },
+  { name: "Hill House Red", brewery: "Weekly Selection", style: "Natural Red Blend", abv: "Varies", category: "other" },
   { name: "Trailhead", brewery: "Athletic", style: "N/A IPA", abv: "<0.5%", category: "other" }
 ];
+
+const drinksMenuData = {
+  "Draft Beer": [
+    "Burial — Three Birds Hazy IPA (7.0%)",
+    "Ponysaurus — Post Shift West Coast IPA (6.5%)",
+    "Resident Culture — Clean Slate Pilsner (5.1%)",
+    "Fonta Flora — Night Desk Porter (6.2%)",
+    "Casita — Sunroom Blend Farmhouse Ale (6.0%)",
+    "Rotating Guest Tap — Seasonal Sour / Wild (varies)"
+  ],
+  "Bottles & Cans": [
+    "Guinness Pub Can",
+    "Modelo Especial",
+    "Pisgah Pale Ale",
+    "Steel String Double IPA",
+    "Sierra Nevada Trail Pass N/A IPA",
+    "PBR Tallboy"
+  ],
+  Wine: [
+    "Rosé by the glass",
+    "Pinot Noir by the glass",
+    "Sauvignon Blanc by the glass",
+    "Sparkling Cava bottle",
+    "House Red / White rotating picks"
+  ],
+  "Cider / Non-alcoholic": [
+    "Botanist & Barrel Dry Cider",
+    "Athletic N/A IPA",
+    "Ginger Beer",
+    "Root Beer",
+    "Seasonal sparkling hop water"
+  ]
+};
 
 const tapGrid = document.getElementById("tapGrid");
 const filterButtons = document.querySelectorAll(".chip");
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector(".site-nav");
-
-const menuList = document.getElementById("menuList");
-
-async function renderMenu() {
-  if (!menuList) return;
-
-  try {
-    const response = await fetch("menu-data.json");
-    const items = await response.json();
-
-    const grouped = items.reduce((acc, item) => {
-      acc[item.category] ??= [];
-      acc[item.category].push(item);
-      return acc;
-    }, {});
-
-    menuList.innerHTML = Object.entries(grouped)
-      .map(
-        ([category, categoryItems]) => `
-          <section class="menu-category">
-            <h4>${category}</h4>
-            ${categoryItems
-              .map(
-                (item) => `
-                  <div class="menu-item">
-                    <span>
-                      ${item.name}
-                      ${item.status ? `<span class="status">(${item.status})</span>` : ""}
-                    </span>
-                    <span class="price">${item.price}</span>
-                  </div>
-                `
-              )
-              .join("")}
-          </section>
-        `
-      )
-      .join("");
-  } catch (error) {
-    menuList.innerHTML = '<p>Menu data could not be loaded right now.</p>';
-  }
-}
-
+const bootRoomMenu = document.getElementById("bootRoomMenu");
+const drinksMenu = document.getElementById("drinksMenu");
 
 function renderTaps(filter = "all") {
+  if (!tapGrid) return;
+
   const taps = filter === "all" ? tapData : tapData.filter((tap) => tap.category === filter);
 
   tapGrid.innerHTML = taps
@@ -76,40 +70,184 @@ function renderTaps(filter = "all") {
     .join("");
 }
 
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    filterButtons.forEach((chip) => chip.classList.remove("active"));
-    button.classList.add("active");
-    renderTaps(button.dataset.filter);
-  });
-});
+async function renderBootRoomMenu() {
+  if (!bootRoomMenu) return;
 
-menuToggle?.addEventListener("click", () => {
-  const isOpen = siteNav.classList.toggle("open");
-  menuToggle.setAttribute("aria-expanded", String(isOpen));
-});
+  const preferredOrder = [
+    "Apps",
+    "Burgers",
+    "Classics",
+    "Salads & Bowls",
+    "Specials",
+    "Sides",
+    "Desserts",
+    "Brunch Starters & Sides",
+    "Brunch Entrées",
+    "Kids",
+    "NA Beverages"
+  ];
 
-[...document.querySelectorAll(".site-nav a")].forEach((link) => {
-  link.addEventListener("click", () => {
-    siteNav.classList.remove("open");
-    menuToggle?.setAttribute("aria-expanded", "false");
-  });
-});
+  try {
+    const response = await fetch("menu-data.json");
+    if (!response.ok) throw new Error("Menu source unavailable");
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        revealObserver.unobserve(entry.target);
-      }
+    const data = await response.json();
+    const foodOnly = data.filter((item) => !["Cans", "Wine"].includes(item.category));
+
+    const grouped = foodOnly.reduce((accumulator, item) => {
+      accumulator[item.category] ??= [];
+      accumulator[item.category].push(item);
+      return accumulator;
+    }, {});
+
+    const orderedCategories = Object.keys(grouped).sort((a, b) => {
+      const aIndex = preferredOrder.indexOf(a);
+      const bIndex = preferredOrder.indexOf(b);
+      if (aIndex === -1 && bIndex === -1) return a.localeCompare(b);
+      if (aIndex === -1) return 1;
+      if (bIndex === -1) return -1;
+      return aIndex - bIndex;
     });
-  },
-  { threshold: 0.12 }
-);
 
-[...document.querySelectorAll(".reveal")].forEach((el) => revealObserver.observe(el));
+    bootRoomMenu.innerHTML = orderedCategories
+      .map(
+        (category) => `
+        <section class="menu-category-card">
+          <h3>${category}</h3>
+          ${grouped[category]
+            .map(
+              (item) => `
+              <div class="menu-item">
+                <span>
+                  ${item.name}
+                  ${item.status ? `<span class="status">(${item.status})</span>` : ""}
+                </span>
+                <span class="price">${item.price}</span>
+              </div>
+            `
+            )
+            .join("")}
+        </section>
+      `
+      )
+      .join("");
+  } catch (error) {
+    bootRoomMenu.innerHTML =
+      "<p>We could not load the full Boot Room food menu right now. Please ask our team for today's full list.</p>";
+  }
+}
 
-document.getElementById("year").textContent = new Date().getFullYear();
+function renderDrinksMenu() {
+  if (!drinksMenu) return;
+
+  drinksMenu.innerHTML = Object.entries(drinksMenuData)
+    .map(
+      ([category, items]) => `
+        <section class="menu-category-card">
+          <h3>${category}</h3>
+          ${items
+            .map(
+              (item) => `
+                <div class="menu-item">
+                  <span>${item}</span>
+                </div>
+              `
+            )
+            .join("")}
+        </section>
+      `
+    )
+    .join("");
+}
+
+function setupFilters() {
+  if (!filterButtons.length) return;
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      filterButtons.forEach((chip) => {
+        chip.classList.remove("active");
+        chip.setAttribute("aria-pressed", "false");
+      });
+      button.classList.add("active");
+      button.setAttribute("aria-pressed", "true");
+      renderTaps(button.dataset.filter);
+    });
+  });
+}
+
+function setupMobileNav() {
+  if (!menuToggle || !siteNav) return;
+
+  menuToggle.addEventListener("click", () => {
+    const isOpen = siteNav.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  [...siteNav.querySelectorAll("a")].forEach((link) => {
+    link.addEventListener("click", () => {
+      siteNav.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+}
+
+function setupSmoothScroll() {
+  const header = document.querySelector(".site-header");
+  const anchors = document.querySelectorAll('a[href^="#"]');
+
+  anchors.forEach((anchor) => {
+    anchor.addEventListener("click", (event) => {
+      const targetId = anchor.getAttribute("href");
+      if (!targetId || targetId === "#") return;
+
+      const targetElement = document.querySelector(targetId);
+      if (!targetElement) return;
+
+      event.preventDefault();
+      const offset = header ? header.offsetHeight + 12 : 0;
+      const top = targetElement.getBoundingClientRect().top + window.scrollY - offset;
+
+      window.scrollTo({ top, behavior: "smooth" });
+      history.replaceState(null, "", targetId);
+    });
+  });
+}
+
+function setupRevealAnimations() {
+  const revealElements = document.querySelectorAll(".reveal");
+  if (!revealElements.length) return;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    revealElements.forEach((element) => element.classList.add("visible"));
+    return;
+  }
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  revealElements.forEach((element) => revealObserver.observe(element));
+}
+
+function setFooterYear() {
+  const yearElement = document.getElementById("year");
+  if (yearElement) yearElement.textContent = new Date().getFullYear();
+}
+
 renderTaps();
-renderMenu();
+setupFilters();
+renderBootRoomMenu();
+renderDrinksMenu();
+setupMobileNav();
+setupSmoothScroll();
+setupRevealAnimations();
+setFooterYear();
