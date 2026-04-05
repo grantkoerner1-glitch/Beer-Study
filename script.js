@@ -52,6 +52,15 @@ const siteNav = document.querySelector(".site-nav");
 const bootRoomMenu = document.getElementById("bootRoomMenu");
 const drinksMenu = document.getElementById("drinksMenu");
 
+function escapeHTML(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function renderTaps(filter = "all") {
   if (!tapGrid) return;
 
@@ -61,9 +70,9 @@ function renderTaps(filter = "all") {
     .map(
       (tap) => `
       <article class="tap-card">
-        <p class="tap-style">${tap.style}</p>
-        <h3>${tap.name}</h3>
-        <p class="tap-meta">${tap.brewery} • ${tap.abv}</p>
+        <p class="tap-style">${escapeHTML(tap.style)}</p>
+        <h3>${escapeHTML(tap.name)}</h3>
+        <p class="tap-meta">${escapeHTML(tap.brewery)} • ${escapeHTML(tap.abv)}</p>
       </article>
     `
     )
@@ -113,16 +122,16 @@ async function renderBootRoomMenu() {
       .map(
         (category) => `
         <section class="menu-category-card">
-          <h3>${category}</h3>
+          <h3>${escapeHTML(category)}</h3>
           ${grouped[category]
             .map(
               (item) => `
               <div class="menu-item">
                 <span>
-                  ${item.name}
-                  ${item.status ? `<span class="status">(${item.status})</span>` : ""}
+                  ${escapeHTML(item.name)}
+                  ${item.status ? `<span class="status">(${escapeHTML(item.status)})</span>` : ""}
                 </span>
-                <span class="price">${item.price}</span>
+                <span class="price">${escapeHTML(item.price)}</span>
               </div>
             `
             )
@@ -144,12 +153,12 @@ function renderDrinksMenu() {
     .map(
       ([category, items]) => `
         <section class="menu-category-card">
-          <h3>${category}</h3>
+          <h3>${escapeHTML(category)}</h3>
           ${items
             .map(
               (item) => `
                 <div class="menu-item">
-                  <span>${item}</span>
+                  <span>${escapeHTML(item)}</span>
                 </div>
               `
             )
